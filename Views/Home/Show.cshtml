@@ -1,0 +1,11 @@
+@model Hobby
+
+<h1 class="card text-center">@Model.Activity </h1>
+<h1>Coordinated by: @Model.Planner.FirstName @Model.Planner.LastName</h1>
+<h1>Description: @Model.Description</h1>
+
+<p>Enthusiasts: <p>@foreach(var f in Model.Attendees){@f.HobbyMember.FirstName}</p></p> 
+@* @if(ViewBag.User.UserId == ViewBag.Planner.UserId){
+    <a href="edit/@ViewBag.HobbyId">edit the hobby</a>
+    <a href="/cancel/@ViewBag.HobbyId" class="btn btn-success">delete the hobby</a>
+} *@

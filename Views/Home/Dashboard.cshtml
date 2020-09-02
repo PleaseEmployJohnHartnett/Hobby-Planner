@@ -1,0 +1,40 @@
+@model List<Hobby>
+<h3 class="card bg-light text-center">Welcome @ViewBag.User.FirstName, Here are all available hobbies</h3>
+<table class = "table-success table">
+    <thead class="bg-dark text-success">
+        <tr>
+            <th>Name:</th>
+            <th>Enthusiasts:</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach( var m in Model)
+        {
+            <tr>
+                <td><a href="/show/@m.HobbyId">@m.Activity</a></td>
+                
+                <td>@m.Attendees.Count</td>
+                
+                <td>
+                    @if(ViewBag.User.UserId == m.Planner.UserId){
+                        <a href="/cancel/@m.HobbyId" class="btn btn-success">delete the hobby</a>
+                    }
+                    else
+                    {
+                        if(m.Attendees.Any( f => f.UserId == ViewBag.User.UserId))
+                        {
+                            <a href="/notattending/@m.HobbyId" class="btn btn-primary">Attending</a>
+                        }
+                        else
+                        {
+                            <a href="/attending/@m.HobbyId" class="btn btn-primary">Not Attending</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/logout" class= "btn btn-danger">no take me away</a>
+<a href="/new" class="btn btn-success">Create a hobby</a>
